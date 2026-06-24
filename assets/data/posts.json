@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "title": "STSC University Opens India Directorate",
+    "date": "2026-06-15",
+    "tags": ["News", "International"],
+    "image": "",
+    "excerpt": "STSC University expands global reach with new international directorate in India, serving South Asian students.",
+    "content": "<p>STSC University is proud to announce the opening of its newest international directorate in India, further strengthening our global presence and commitment to providing accessible education to students across the world.</p><p>The India directorate will be led by Prof Dr Ashok Daji Sawardekar, who brings decades of experience in higher education and international academic partnerships.</p><p>Indian and South Asian students can now access admissions support, credential evaluation, and pre-departure orientation through our India office.</p>"
+  },
+  {
+    "id": 2,
+    "title": "2026/2027 Admissions Now Open",
+    "date": "2026-06-01",
+    "tags": ["Admissions", "Announcement"],
+    "image": "",
+    "excerpt": "Applications for the 2026/2027 academic year are now being accepted across all programmes. Apply today!",
+    "content": "<p>STSC University is now accepting applications for the 2026/2027 academic year. We offer accredited 4-year bachelor's degree programmes in Engineering, Computing, Business, and the Humanities.</p><p>Interested applicants can apply online through our admissions portal or visit the Kasoa-Nyanyano campus for in-person assistance.</p><p>Scholarships and financial aid are available for qualified students.</p>"
+  },
+  {
+    "id": 3,
+    "title": "Engineering Students Win Regional Innovation Award",
+    "date": "2026-05-20",
+    "tags": ["Achievements", "Engineering"],
+    "image": "",
+    "excerpt": "STSC Engineering students awarded first prize at the Central Region Innovation and Technology Fair.",
+    "content": "<p>A team of Mechanical Engineering students from STSC University has won first prize at the Central Region Innovation and Technology Fair held in Cape Coast.</p><p>The students presented a solar-powered irrigation system designed for small-scale farmers in rural communities. The project impressed judges with its practicality, affordability, and potential for community impact.</p><p>We congratulate our students for bringing honour to STSC University.</p>"
+  },
+  {
+    "id": 4,
+    "title": "STSC University Partners with Local Industries",
+    "date": "2026-04-10",
+    "tags": ["Partnerships", "Community"],
+    "image": "",
+    "excerpt": "New industry partnerships provide students with internship and practical training opportunities across Ghana.",
+    "content": "<p>STSC University has signed memorandum of understanding with five leading companies in Ghana to provide students with internship and practical training opportunities.</p><p>The partnerships span engineering, computing, and business sectors, giving our students real-world experience and enhancing their employability upon graduation.</p>"
+  },
+  {
+    "id": 5,
+    "title": "New Computer Lab Inaugurated on Campus",
+    "date": "2026-03-15",
+    "tags": ["Campus", "Infrastructure"],
+    "image": "",
+    "excerpt": "State-of-the-art computer laboratory with 50 workstations inaugurated to support Computing and Engineering programmes.",
+    "content": "<p>A new state-of-the-art computer laboratory has been inaugurated at the STSC University campus. The facility features 50 modern workstations with the latest software for our Computing and Engineering students.</p><p>The lab will support courses in programming, software engineering, CAD/CAM, and data analysis.</p>"
+  },
+  {
+    "id": 6,
+    "title": "Alumni Spotlight: From STSC to International Leadership",
+    "date": "2026-02-20",
+    "tags": ["Alumni", "Success Stories"],
+    "image": "",
+    "excerpt": "STSC University alumnus shares journey from Kasoa-Nyanyano campus to international leadership role.",
+    "content": "<p>In our latest alumni spotlight, we feature a graduate of STSC University who has risen to a leadership position in a multinational organisation.</p><p>Read about their journey from our Kasoa-Nyanyano campus to making an impact on the global stage.</p>"
+  }
+]

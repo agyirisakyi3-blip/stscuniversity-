@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard | STSC University</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>html{scroll-behavior:smooth}:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}img{max-width:100%;height:auto}</style>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#1e3a5f" />
+</head>
+<body>
+<div id="scrollBar"></div>
+<div class="top-bar"><div class="container"><div class="top-bar-left"><a href="tel:+233257077972">&#9742; +233 257 077 972</a><a href="mailto:info@successtheological.edu">&#9993; info@successtheological.edu</a></div><div class="top-bar-right"><a href="index.html">&larr; Back to Site</a></div></div></div>
+
+<nav id="navbar" aria-label="Admin navigation"><div class="container"><a href="index.html" class="logo"><div class="logo-img">ST</div><div class="logo-text">STSC <span>University</span><small>Admin Panel</small></div></a></div></nav>
+
+<main id="main-content" tabindex="-1" style="min-height:60vh;">
+  <section style="padding:60px 0;">
+    <div class="container">
+      <div id="adminApp">
+        <div class="admin-login" id="adminLogin">
+          <h2 style="font-size:1.6rem;margin-bottom:8px;">&#128274; Admin Access</h2>
+          <p style="color:var(--text-light);margin-bottom:24px;">Enter password to manage site content</p>
+          <input type="password" id="adminPass" placeholder="Enter admin password" onkeydown="if(event.key==='Enter')adminLogin()" />
+          <button class="btn-primary" onclick="adminLogin()">Sign In</button>
+          <p id="adminError" style="color:red;font-size:0.85rem;margin-top:12px;display:none;"></p>
+        </div>
+        <div class="admin-panel" id="adminPanel" style="display:none;">
+          <h2 style="font-size:1.6rem;margin-bottom:4px;">&#128202; Content Manager</h2>
+          <p style="color:var(--text-light);margin-bottom:20px;">Edit programmes, news posts, events, and faculty data. Changes save to localStorage.</p>
+          <div class="admin-tabs">
+            <button class="active" data-tab="programs">Programmes</button>
+            <button data-tab="posts">News Posts</button>
+            <button data-tab="events">Events</button>
+            <button data-tab="faculty">Faculty</button>
+            <button onclick="adminLogout()" style="margin-left:auto;background:var(--primary);color:var(--white);">Lock &larr;</button>
+          </div>
+          <div class="admin-editor" id="adminEditor">
+            <textarea id="editorTextarea"></textarea>
+            <div style="display:flex;gap:12px;align-items:center;margin-top:12px;flex-wrap:wrap;">
+              <button class="btn-primary" onclick="saveContent()">&#128190; Save Changes</button>
+              <span id="saveStatus" style="font-size:0.85rem;color:var(--accent);font-weight:600;"></span>
+              <span style="font-size:0.8rem;color:var(--text-light);margin-left:auto;">Data stored in your browser (localStorage)</span>
+            </div>
+          </div>
+          <div class="admin-preview" id="adminPreview" style="margin-top:16px;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer style="margin-top:auto;"><div class="container"><div class="footer-bottom"><span>&copy; 2026 STSC University. Admin Panel.</span></div></div></footer>
+
+<script>
+const ADMIN_HASH = '240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9'; // SHA-256 of "admin123"
+async function sha256(msg) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(msg));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
+const DEFAULTS = {
+  programs: JSON.stringify([{"name":"Mechanical Engineering Technology","code":"BEng-MET","duration":"4 Years","desc":"Design, manufacturing, thermodynamics, CAD/CAM, energy systems.","category":"Engineering"},{"name":"Computer Engineering Technology","code":"BEng-CET","duration":"4 Years","desc":"Hardware, embedded systems, networking, IoT.","category":"Engineering"},{"name":"Information Technology","code":"BSc-IT","duration":"4 Years","desc":"Networking, cybersecurity, web development, database management.","category":"Computing"},{"name":"Software Engineering","code":"BSc-SE","duration":"4 Years","desc":"Programming, algorithms, software design, testing.","category":"Computing"},{"name":"Business Administration","code":"BBA","duration":"4 Years","desc":"Management, marketing, finance, entrepreneurship.","category":"Business"},{"name":"BA English","code":"BA-ENG","duration":"4 Years","desc":"Literature, linguistics, creative writing, communication.","category":"Humanities"}],null,2),
+  posts: JSON.stringify([{"id":1,"title":"STSC University Opens India Directorate","date":"2026-06-15","tags":["News","International"],"excerpt":"STSC University expands global reach with new international directorate in India, serving South Asian students.","content":"<p>STSC University is proud to announce the opening of its newest international directorate in India, further strengthening our global presence and commitment to providing accessible education to students across the world.</p><p>The India directorate will be led by Prof Dr Ashok Daji Sawardekar, who brings decades of experience in higher education and international academic partnerships.</p><p>Indian and South Asian students can now access admissions support, credential evaluation, and pre-departure orientation through our India office.</p>"},{"id":2,"title":"2026/2027 Admissions Now Open","date":"2026-06-01","tags":["Admissions","Announcement"],"excerpt":"Applications for the 2026/2027 academic year are now being accepted across all programmes. Apply today!","content":"<p>STSC University is now accepting applications for the 2026/2027 academic year. We offer accredited 4-year bachelor's degree programmes in Engineering, Computing, Business, and the Humanities.</p><p>Interested applicants can apply online through our admissions portal or visit the Kasoa-Nyanyano campus for in-person assistance.</p><p>Scholarships and financial aid are available for qualified students.</p>"},{"id":3,"title":"Engineering Students Win Regional Innovation Award","date":"2026-05-20","tags":["Achievements","Engineering"],"excerpt":"STSC Engineering students awarded first prize at the Central Region Innovation and Technology Fair.","content":"<p>A team of Mechanical Engineering students from STSC University has won first prize at the Central Region Innovation and Technology Fair held in Cape Coast.</p><p>The students presented a solar-powered irrigation system designed for small-scale farmers in rural communities. The project impressed judges with its practicality, affordability, and potential for community impact.</p><p>We congratulate our students for bringing honour to STSC University.</p>"}],null,2),
+  events: JSON.stringify([{"title":"Matriculation Ceremony 2026","date":"2026-09-15","time":"10:00 AM","venue":"Main Campus Auditorium","desc":"Formal induction of new students into the university."},{"title":"Career Fair 2026","date":"2026-10-20","time":"9:00 AM","venue":"Student Centre","desc":"Meet potential employers from leading Ghanaian and international companies."},{"title":"Graduation Ceremony","date":"2027-02-12","time":"8:00 AM","venue":"Campus Quad","desc":"Congregation for the graduating class of 2026/2027."}],null,2),
+  faculty: JSON.stringify([{"name":"Professor Emmanuel G Lanz","title":"Vice Chancellor & Professor of Education","bio":"Over 20 years in higher education administration."},{"name":"Dr Kwame Asare","title":"Senior Lecturer — Engineering","bio":"Specialises in mechanical engineering and renewable energy."},{"name":"Dr Esi Mensah","title":"Lecturer — Business Administration","bio":"Expert in strategic management and entrepreneurship."},{"name":"Dr Samuel Osei","title":"Lecturer — Computing & IT","bio":"Researcher in software engineering and AI."},{"name":"Dr Akua Baidoo","title":"Senior Lecturer — English","bio":"Specialises in African literature and linguistics."},{"name":"Dr Kofi Owusu","title":"Lecturer — Mathematics","bio":"Expert in applied mathematics and statistics."}],null,2)
+};
+let currentTab = 'programs';
+function switchTab(tab) {
+  currentTab = tab;
+  document.querySelectorAll('.admin-tabs button').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+  loadEditor();
+}
+function loadEditor() {
+  const data = JSON.parse(localStorage.getItem('admin_'+currentTab) || DEFAULTS[currentTab]);
+  document.getElementById('editorTextarea').value = typeof data === 'string' ? data : JSON.stringify(data, null, 2);
+  updatePreview();
+}
+function updatePreview() {
+  try { const d = JSON.parse(document.getElementById('editorTextarea').value); document.getElementById('adminPreview').textContent = '✓ Valid JSON — ' + (Array.isArray(d) ? d.length + ' items' : Object.keys(d).length + ' keys'); }
+  catch(e) { document.getElementById('adminPreview').textContent = '✗ Invalid JSON: ' + e.message; }
+}
+function saveContent() {
+  const val = document.getElementById('editorTextarea').value;
+  try { JSON.parse(val); localStorage.setItem('admin_'+currentTab, val); document.getElementById('saveStatus').textContent = '✓ Saved at ' + new Date().toLocaleTimeString(); } catch(e) { document.getElementById('saveStatus').textContent = '✗ Error: ' + e.message; }
+}
+async function adminLogin() {
+  const pass = document.getElementById('adminPass').value;
+  const hash = await sha256(pass);
+  if (hash === ADMIN_HASH) {
+    document.getElementById('adminLogin').style.display = 'none';
+    document.getElementById('adminPanel').style.display = 'block';
+    loadEditor();
+  } else {
+    document.getElementById('adminError').textContent = 'Incorrect password';
+    document.getElementById('adminError').style.display = 'block';
+  }
+}
+function adminLogout() { document.getElementById('adminLogin').style.display = 'block'; document.getElementById('adminPanel').style.display = 'none'; document.getElementById('adminPass').value = ''; }
+document.querySelector('.admin-tabs').addEventListener('click', e => { if (e.target.dataset.tab) switchTab(e.target.dataset.tab); });
+document.getElementById('editorTextarea').addEventListener('input', updatePreview);
+</script>
+</body>
+</html>

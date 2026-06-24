@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STSC University | School of Technology &amp; Social Sciences</title>
+  <meta name="description" content="STSC University offers accredited 4-year degree programmes in Engineering, Technology, Business, and the Humanities. Ghana's standard. Career-ready graduates." />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap&display=swap" rel="stylesheet" />
+  <link rel="preload" as="image" href="assets/images/slide-graduation.jpg" />
+  <link rel="preload" as="image" href="assets/images/programs/mechanical-engineering.jpg" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    html { scroll-behavior: smooth; }
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+    .skip-link:focus { position: fixed; top: 8px; left: 8px; z-index: 10000; background: var(--accent); color: var(--primary-dark); padding: 12px 24px; border-radius: 8px; font-weight: 700; text-decoration: none; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+    img { max-width: 100%; height: auto; }
+  </style>
+  <style>
+    /* Program accordion extended height */
+    .prog-accordion .faq-item.open .faq-answer { max-height: 1200px; }
+    .prog-accordion .faq-answer-inner { padding: 0 24px 24px; }
+    .prog-year-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 12px; }
+    .prog-year-block { background: #f8fafc; border-radius: 10px; padding: 14px 18px; border: 1px solid #eef2f6; }
+    .prog-year-block h4 { font-size: 0.82rem; font-weight: 700; color: var(--primary-light); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+    .prog-year-block ul { list-style: none; font-size: 0.82rem; }
+    .prog-year-block ul li { padding: 4px 0; display: flex; align-items: center; gap: 8px; color: #475569; }
+    .prog-year-block ul li::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--primary-light); flex-shrink: 0; }
+    .prog-badge { display: inline-block; font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; padding: 2px 10px; border-radius: 20px; margin-left: 10px; background: rgba(30,58,95,0.08); color: var(--primary-light); }
+    .toast { display: none; padding: 14px 20px; border-radius: 10px; font-weight: 600; margin-bottom: 18px; text-align: center; font-size: 0.9rem; animation: toastIn 0.4s var(--ease); }
+    .toast.show { display: block; }
+    .toast.success { background: #dcfce7; color: #166534; }
+    .toast.error { background: #fee2e2; color: #991b1b; }
+    @keyframes toastIn { 0% { opacity: 0; transform: translateY(-10px) scale(0.95); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
+    .conv-form .form-sub { font-size: 0.85rem; color: var(--text-light); margin-bottom: 24px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .form-group.has-error input, .form-group.has-error select { border-color: #ef4444; box-shadow: 0 0 0 4px rgba(239,68,68,0.08); }
+    .form-error-msg { font-size: 0.75rem; color: #ef4444; margin-top: 4px; display: none; }
+    .form-group.has-error .form-error-msg { display: block; }
+    .btn-submit { width: 100%; padding: 15px; background: var(--accent); color: var(--primary-dark); border: none; border-radius: 10px; font-size: 1.05rem; font-weight: 700; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; letter-spacing: 0.3px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(200,163,78,0.35); }
+    .btn-submit:active { transform: translateY(0); }
+    .btn-submit.loading { pointer-events: none; opacity: 0.8; }
+    .btn-submit.loading .btn-text { display: none; }
+    .btn-submit.loading .btn-loading { display: flex; }
+    .btn-loading { display: none; align-items: center; gap: 8px; }
+    .spinner { width: 18px; height: 18px; border: 2px solid rgba(255,255,255,0.3); border-top-color: var(--primary-dark); border-radius: 50%; animation: spin 0.6s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .form-guarantee { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.78rem; color: var(--text-light); margin-top: 14px; }
+    .form-guarantee strong { color: #334155; }
+    .conv-form { background: var(--white); border-radius: var(--radius-lg); padding: 40px; box-shadow: var(--shadow-lg); }
+    .conv-form-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+    .conv-form-header h3 { font-size: 1.3rem; font-weight: 700; }
+    .conv-form-header .badge { background: linear-gradient(135deg, #dcfce7, #bbf7d0); color: #166534; font-size: 0.68rem; font-weight: 700; padding: 4px 14px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.8px; }
+    @media (max-width: 768px) {
+      .prog-year-grid { grid-template-columns: 1fr !important; }
+      .form-row { grid-template-columns: 1fr; }
+      .conv-form { padding: 28px 20px; }
+    }
+    .specs-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .spec-card { background: var(--white); border-radius: 16px; padding: 32px 24px; border: 1px solid #eef2f6; transition: box-shadow 0.4s var(--ease), transform 0.4s var(--ease); position: relative; overflow: hidden; }
+    .spec-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--primary-light), var(--accent)); transform: scaleX(0); transform-origin: left; transition: transform 0.4s var(--ease); }
+    .spec-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-6px); }
+    .spec-card:hover::before { transform: scaleX(1); }
+    .spec-icon { width: 56px; height: 56px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; font-weight: 800; margin-bottom: 20px; transition: transform 0.3s var(--ease); }
+    .spec-card:hover .spec-icon { transform: scale(1.05) rotate(-3deg); }
+    .spec-card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 10px; }
+    .spec-card p { font-size: 0.9rem; color: var(--text-light); line-height: 1.7; margin-bottom: 16px; }
+    .spec-card ul { list-style: none; font-size: 0.85rem; }
+    .spec-card ul li { padding: 5px 0; color: #475569; position: relative; padding-left: 20px; transition: transform 0.2s; }
+    .spec-card ul li::before { content: ''; position: absolute; left: 0; top: 11px; width: 6px; height: 6px; background: var(--primary-light); border-radius: 50%; }
+    .spec-card ul li:hover { transform: translateX(4px); }
+    .curr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+    .curr-block { background: var(--white); border: 1px solid #eef2f6; border-radius: 20px; padding: 32px; transition: box-shadow 0.3s, transform 0.3s; }
+    .curr-block:hover { box-shadow: var(--shadow); transform: translateY(-3px); }
+    .curr-block h3 { font-size: 1rem; font-weight: 700; margin-bottom: 18px; color: var(--primary-light); display: flex; align-items: center; gap: 10px; }
+    .curr-block h3 .h3-icon { width: 32px; height: 32px; border-radius: 8px; background: rgba(30,58,95,0.08); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; }
+    .curr-block ul { list-style: none; font-size: 0.9rem; }
+    .curr-block ul li { padding: 8px 0; border-bottom: 1px solid #f1f5f9; display: flex; align-items: center; gap: 10px; }
+    .curr-block ul li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--primary-light); flex-shrink: 0; }
+    .curr-block ul li:last-child { border: none; }
+    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .why-item { text-align: center; padding: 36px 28px; border-radius: 16px; transition: background 0.3s, transform 0.3s; }
+    .why-item:hover { background: #f8fafc; transform: translateY(-4px); }
+    .why-icon { font-size: 2.4rem; margin-bottom: 18px; display: inline-block; transition: transform 0.3s var(--ease); }
+    .why-item:hover .why-icon { transform: scale(1.15); }
+    .why-item h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+    .why-item p { font-size: 0.9rem; color: var(--text-light); line-height: 1.7; }
+    .faq-list { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+    .faq-item { background: var(--white); border: 1px solid #eef2f6; border-radius: 16px; overflow: hidden; transition: box-shadow 0.3s, border-color 0.3s; }
+    .faq-item:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.04); border-color: #e2e8f0; }
+    .faq-item.open { border-color: var(--primary-light); box-shadow: 0 4px 20px rgba(30,58,95,0.08); }
+    .faq-question { width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; background: none; border: none; cursor: pointer; font-family: inherit; font-size: 1rem; font-weight: 600; color: var(--text); text-align: left; transition: color 0.2s; }
+    .faq-question:hover { color: var(--primary-light); }
+    .faq-question .faq-icon { width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; background: #f1f5f9; font-size: 1.1rem; font-weight: 300; transition: transform 0.4s var(--ease), background 0.3s; flex-shrink: 0; margin-left: 16px; }
+    .faq-item.open .faq-question .faq-icon { transform: rotate(45deg); background: rgba(30,58,95,0.08); color: var(--primary-light); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.45s var(--ease); }
+    .faq-item.open .faq-answer { max-height: 350px; }
+    .faq-answer-inner { padding: 0 24px 20px; font-size: 0.95rem; color: #475569; line-height: 1.7; }
+    @media (max-width: 1024px) {
+      .specs-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .specs-grid { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr; }
+      .why-item { padding: 24px; }
+      .curr-grid { grid-template-columns: 1fr; }
+    }
+    /* Admissions Popup */
+    .popup-overlay {
+      position: fixed; inset: 0; z-index: 999;
+      background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; visibility: hidden;
+      transition: opacity 0.4s var(--ease), visibility 0.4s;
+    }
+    .popup-overlay.open { opacity: 1; visibility: visible; }
+    .popup-modal {
+      background: var(--white); border-radius: var(--radius-lg);
+      max-width: 520px; width: 90%; padding: 0;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.3);
+      transform: scale(0.9) translateY(20px);
+      transition: transform 0.4s var(--ease);
+      overflow: hidden; position: relative;
+    }
+    .popup-overlay.open .popup-modal { transform: scale(1) translateY(0); }
+    .popup-banner {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary), var(--primary-light));
+      padding: 36px 32px 28px; text-align: center; color: var(--white); position: relative;
+    }
+    .popup-banner .popup-icon { font-size: 2.8rem; margin-bottom: 10px; animation: popupBounce 1s ease infinite; }
+    @keyframes popupBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+    .popup-banner h2 { font-size: 1.5rem; color: var(--white); margin-bottom: 4px; }
+    .popup-banner p { font-size: 0.9rem; opacity: 0.85; }
+    .popup-banner .popup-year {
+      display: inline-block; background: var(--accent); color: var(--primary-dark);
+      font-weight: 800; font-size: 0.85rem; padding: 4px 20px; border-radius: 20px;
+      margin-top: 10px; letter-spacing: 1px;
+    }
+    .popup-body { padding: 28px 32px 32px; }
+    .popup-body p { font-size: 0.95rem; color: var(--text-light); line-height: 1.7; margin-bottom: 20px; }
+    .popup-body .popup-cta {
+      display: block; text-align: center;
+      background: var(--accent); color: var(--primary-dark);
+      padding: 14px; border-radius: 10px; font-weight: 700; font-size: 1rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .popup-body .popup-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(200,163,78,0.35); }
+    .popup-close {
+      position: absolute; top: 12px; right: 14px; z-index: 10;
+      width: 32px; height: 32px; border-radius: 50%;
+      background: rgba(255,255,255,0.15); border: none;
+      color: var(--white); font-size: 1.2rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s; line-height: 1;
+    }
+    .popup-close:hover { background: rgba(255,255,255,0.3); }
+    .popup-dismiss {
+      display: block; text-align: center; font-size: 0.8rem;
+      color: var(--text-light); margin-top: 14px; cursor: pointer;
+      transition: color 0.2s; background: none; border: none; width: 100%; font-family: inherit;
+    }
+    .popup-dismiss:hover { color: var(--text); }
+  </style>
+  <link rel="canonical" href="https://www.stscuniversity.edu.gh/" />
+  <meta name="keywords" content="STSC University, STSC, university Ghana, degree programmes Ghana, engineering Ghana, computer science Ghana, business administration Ghana, Kasoa university, private university Ghana, tertiary education Ghana, bachelor degree Ghana" />
+  <meta name="author" content="STSC University" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+  <meta name="theme-color" content="#1e3a5f" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="STSC University | School of Technology &amp; Social Sciences" />
+  <meta property="og:description" content="STSC University offers accredited 4-year degree programmes in Engineering, Technology, Business, and the Humanities. Apply now for 2026/2027." />
+  <meta property="og:url" content="https://www.stscuniversity.edu.gh/" />
+  <meta property="og:image" content="https://www.stscuniversity.edu.gh/assets/images/og-image.jpg" />
+  <meta property="og:site_name" content="STSC University" />
+  <meta property="og:locale" content="en_GH" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="STSC University | School of Technology &amp; Social Sciences" />
+  <meta name="twitter:description" content="Accredited 4-year degree programmes in Engineering, Technology, Business, and the Humanities. Ghana's standard. Career-ready graduates." />
+  <meta name="twitter:image" content="https://www.stscuniversity.edu.gh/assets/images/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <link rel="icon" href="https://www.stscuniversity.edu.gh/assets/images/favicon.ico" sizes="any" />
+  <meta name="datePublished" content="2026-06-23" />
+  <meta name="dateModified" content="2026-06-23" />
+  <link rel="apple-touch-icon" href="https://www.stscuniversity.edu.gh/assets/images/apple-touch-icon.png" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "STSC University",
+    "alternateName": "School of Technology and Social Sciences",
+    "description": "STSC University is a premier private tertiary institution at Kasoa-Nyanyano, offering accredited 4-year bachelor's degree programmes in Engineering, Technology, Business, and the Humanities.",
+    "url": "https://www.stscuniversity.edu.gh/",
+    "telephone": "+233-257-077-972",
+    "email": "info@successtheological.edu",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Kasoa-Nyanyano",
+      "addressLocality": "Kasoa",
+      "addressRegion": "Central Region",
+      "addressCountry": "GH"
+    },
+    "foundingDate": "2013-08-23",
+    "foundingLocation": "Kasoa, Ghana",
+    "numberOfEmployees": "120+",
+    "parentOrganization": {
+      "@type": "Organization",
+      "name": "Success Theological and Social Sciences College"
+    },
+    "sameAs": [
+      "https://www.facebook.com/stscuniversity",
+      "https://twitter.com/stscuni",
+      "https://www.instagram.com/stscuniversity",
+      "https://www.youtube.com/@stscuniversity",
+      "https://www.linkedin.com/school/stsc-university"
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "STSC University",
+    "url": "https://www.stscuniversity.edu.gh/",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://www.stscuniversity.edu.gh/?q={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    },
+    "description": "Premier private tertiary institution in Kasoa-Nyanyano, Ghana offering accredited 4-year bachelor's degree programmes."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I apply to STSC University?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Complete the online application form on the STSC University website or visit the admissions page. Submit your WASSCE/SSSCE results, personal details, and programme preference. The admissions team responds within 48 hours."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are the entry requirements for STSC University?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "WASSCE applicants need Credit (A1-C6) in English, Mathematics, and three relevant subjects. SSSCE applicants need Credit (A-D) in the same subjects. Mature entry (25+ years) and diploma holders may also qualify."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What programmes does STSC University offer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "STSC University offers 11 accredited 4-year bachelor's degree programmes across three schools: Engineering (Mechanical, Welding, Refrigeration & AC, Plant, Maintenance), Computing & IT (Hardware, Network, Server, Computer Science), and Business & Humanities (Business Administration, BA English)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does STSC University offer scholarships?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. STSC University offers Merit Scholarships (up to 40% off for exceptional students), Need-Based Aid (20-30% off), and an Early Bird Discount (10% off for applications before 31 August 2026)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the tuition fee at STSC University?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Annual tuition ranges from GH₵ 5,800 (BA English) to GH₵ 8,500 (Mechanical Engineering). Accommodation, scholarship discounts, and payment plans are available. Use the Fee Calculator on the admissions page for a personalized estimate."
+        }
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": "Mechanical Engineering Technology",
+    "description": "B.Eng programme covering design, manufacturing, thermodynamics, CAD/CAM, and energy systems.",
+    "provider": {
+      "@type": "EducationalOrganization",
+      "name": "STSC University",
+      "sameAs": "https://www.stscuniversity.edu.gh/"
+    },
+    "educationalCredentialAwarded": "Bachelor of Engineering (B.Eng)",
+    "coursePrerequisites": "WASSCE: Credit in English, Mathematics, Physics, and two other relevant subjects",
+    "occupationalCategory": "Mechanical Engineer"
+  }
+  </script>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<div class="page-transition" id="pageTransition"></div>
+<div id="scrollBar"></div>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="container">
+    <div class="top-bar-left">
+      <a href="tel:+233257077972">&#9742; +233 257 077 972</a>
+      <a href="mailto:info@successtheological.edu">&#9993; info@successtheological.edu</a>
+      <a href="#">&#128205; Kasoa-Nyanyano</a>
+      <span class="live-clock">&#9200; <span id="liveClock"></span></span>
+    </div>
+    <div class="top-bar-right">
+      <a href="#" class="social-icon">FB</a>
+      <a href="#" class="social-icon">X</a>
+      <a href="#" class="social-icon">IG</a>
+      <a href="#" class="social-icon">YT</a>
+      <label class="dark-toggle" aria-label="Toggle dark mode">
+        <input type="checkbox" id="darkModeToggle"><span class="dark-toggle-slider"></span>
+      </label>
+      <button id="langToggle" aria-label="Switch language" style="background:rgba(255,255,255,0.1);border:none;color:#fff;padding:4px 10px;border-radius:6px;font-size:0.75rem;font-weight:700;cursor:pointer;font-family:inherit;">EN</button>
+      <a href="https://portal.stsc.edu.gh" style="font-weight:600;">&#128274; Student Portal</a>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="navbar" aria-label="Main navigation">
+  <div class="container">
+    <a href="index.html" class="logo">
+      <div class="logo-img">ST</div>
+      <div class="logo-text">STSC <span>University</span><small>School of Technology &amp; Social Sciences</small></div>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="active" aria-current="page" data-i18n="nav.home">Home</a></li>
+      <li>
+        <a href="about.html" data-i18n="nav.about">About <span class="dropdown-arrow">&#9662;</span></a>
+        <div class="dropdown-menu">
+          <a href="about.html">Our Story</a>
+          <a href="about.html#mission">Mission &amp; Vision</a>
+          <a href="about.html#leadership">Leadership</a>
+        </div>
+      </li>
+      <li>
+        <a href="#programs" data-i18n="nav.academics">Academics <span class="dropdown-arrow">&#9662;</span></a>
+        <div class="dropdown-menu">
+          <a href="index.html#allprograms">All Programmes</a>
+          <a href="index.html#program">Business Administration</a>
+          <a href="index.html#english">BA English</a>
+          <a href="index.html#allprograms">Engineering &amp; Technology</a>
+          <a href="index.html#allprograms">Computing &amp; IT</a>
+        </div>
+      </li>
+      <li><a href="admissions.html" data-i18n="nav.admissions">Admissions</a></li>
+      <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+      <li><a href="admissions.html" class="nav-cta" data-i18n="nav.apply">Apply Now</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-controls="navLinks" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<main id="main-content" tabindex="-1">
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-slider">
+    <div class="hero-slide active" style="background-image:url(assets/images/slide-graduation.jpg)"><div class="hero-slide-overlay"></div></div>
+    <div class="hero-slide" style="background-image:url(assets/images/slide-campus.jpg)"><div class="hero-slide-overlay"></div></div>
+    <div class="hero-slide" style="background-image:url(assets/images/slide-graduation2.jpg)"><div class="hero-slide-overlay"></div></div>
+  </div>
+  <div class="hero-grid-bg"></div>
+  <div class="container">
+    <div class="hero-content">
+      <h1 class="reveal"><span data-i18n="hero.title">Shape Your Future at</span> <span>STSC University</span></h1>
+      <p class="reveal reveal-delay-1" data-i18n="hero.desc">Accredited 4-year degree programmes in Engineering, Technology, Business, and the Humanities.</p>
+      <p class="reveal reveal-delay-1" style="font-size:1.15rem;font-weight:500;margin-bottom:28px;color:var(--accent);max-width:520px;line-height:1.7;">
+        <span class="typewriter-wrap"><span id="typewriter" data-phrases='["Excellence in Higher Education","Career-Ready Graduates","Innovation &amp; Leadership","Grounded in Ghanaian Standards"]'></span><span class="typewriter-cursor"></span></span>
+      </p>
+      <div class="hero-badges reveal reveal-delay-2">
+        <span>Accredited</span>
+        <span>4-Year Degrees</span>
+        <span>Expert Faculty</span>
+        <span>Career Ready</span>
+      </div>
+      <div class="hero-actions reveal reveal-delay-3">
+        <a href="admissions.html" class="btn-primary shimmer">Apply Now &rarr;</a>
+        <a href="#about" class="btn-secondary">Explore &darr;</a>
+      </div>
+    </div>
+    <div class="reveal reveal-delay-2">
+      <div class="hero-stats">
+        <div class="stat-card">
+          <div class="stat-number"><span class="counter" data-target="12">0</span>+</div>
+          <div class="stat-label">Degree Programmes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number"><span class="counter" data-target="2400">0</span>+</div>
+          <div class="stat-label">Alumni Worldwide</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number"><span class="counter" data-target="15">0</span>:1</div>
+          <div class="stat-label">Student&ndash;Faculty Ratio</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number"><span class="counter" data-target="92">0</span>%</div>
+          <div class="stat-label">Employed Within 6 Months</div>
+        </div>
+      </div>
+      <div class="countdown-bar reveal" style="margin-top:20px;">
+        <div class="countdown-item"><div class="countdown-num" id="cdDays">00</div><div class="countdown-label">Days</div></div>
+        <div class="countdown-item"><div class="countdown-num" id="cdHours">00</div><div class="countdown-label">Hours</div></div>
+        <div class="countdown-item"><div class="countdown-num" id="cdMins">00</div><div class="countdown-label">Minutes</div></div>
+        <div class="countdown-item"><div class="countdown-num" id="cdSecs">00</div><div class="countdown-label">Seconds</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-dots" aria-label="Slide navigation">
+    <button class="hero-dot active" data-slide="0" aria-label="Slide 1"></button>
+    <button class="hero-dot" data-slide="1" aria-label="Slide 2"></button>
+    <button class="hero-dot" data-slide="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="shape-divider">
+    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="var(--white)" opacity="0.8"></path>
+    </svg>
+  </div>
+</section>
+
+<!-- ABOUT PREVIEW -->
+<section id="about" class="about-preview" data-parallax="0.08">
+  <div class="container">
+    <div class="about-grid">
+      <div class="reveal reveal-delay-1">
+        <div class="founder-wrap">
+          <img src="assets/images/Apostle professor Amb Dr Jerry Success .jpeg" alt="Apostle Professor Amb Dr Jerry Success &mdash; Chancellor" class="founder-img lightbox-trigger" loading="lazy" style="cursor:zoom-in;">
+          <div style="position:absolute;bottom:20px;left:20px;background:rgba(0,0,0,0.65);padding:16px 28px;border-radius:12px;backdrop-filter:blur(6px);text-align:center;max-width:calc(100% - 40px);z-index:2;">
+          <div style="font-size:0.85rem;color:var(--accent);font-weight:600;letter-spacing:0.5px;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Apostle Prof. Amb. Dr Jerry Success</div>
+          <div style="font-size:2.8rem;font-weight:900;color:#fff;line-height:1;">STSC</div>
+          <div style="font-size:1.05rem;color:rgba(255,255,255,0.8);margin-top:2px;">Est. 2013</div>
+        </div>
+      </div>
+    </div>
+      <div class="about-text reveal reveal-delay-2">
+        <span class="section-label">About Us</span>
+        <h2>Excellence in <span class="accent">Higher Education</span></h2>
+        <p>STSC University commenced with 14 students on 23rd August 2013, born out of a passion to raise unquestionable leaders with academic excellence and ethical integrity.</p>
+        <p>We offer 12+ accredited bachelor's degree programmes across Engineering, Technology, Business, and the Humanities &mdash; each designed to meet national standards while preparing students for global opportunities.</p>
+        <ul class="about-features">
+          <li>Accredited by Ghana Tertiary Education Commission</li>
+          <li>Industry-aligned curriculum</li>
+          <li>Modern labs &amp; workshops</li>
+          <li>Work-integrated learning</li>
+        </ul>
+        <a href="about.html" class="btn-primary" style="margin-top:24px;">Learn More &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS OVERVIEW -->
+<section id="programs" class="programs-overview" data-parallax="0.04">
+  <div class="container">
+    <span class="section-label">Academics</span>
+    <h2 class="reveal">Our <span class="accent">Degree Programmes</span></h2>
+    <p class="section-sub reveal reveal-delay-1">Choose from 12+ accredited 4-year bachelor's degree programmes across our three schools.</p>
+    <div class="filter-tabs reveal" role="tablist" aria-label="Filter programmes by school">
+      <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All</button>
+      <button class="filter-btn" data-filter="engineering" role="tab" aria-selected="false">Engineering</button>
+      <button class="filter-btn" data-filter="computing" role="tab" aria-selected="false">Computing &amp; IT</button>
+      <button class="filter-btn" data-filter="business" role="tab" aria-selected="false">Business &amp; Humanities</button>
+    </div>
+    <div class="prog-cards" id="progCards">
+      <a href="#allprograms" class="prog-card reveal reveal-delay-1 tilt-card" data-category="engineering">
+        <div class="tilt-card-inner">
+          <img src="assets/images/programs/mechanical-engineering.jpg" alt="Mechanical Engineering Technology" class="prog-card-img blur-up" loading="lazy">
+          <h3>Mechanical Engineering Technology</h3>
+          <p>B.Eng &mdash; Design, manufacturing, thermodynamics, and energy systems.</p>
+          <button class="btn-secondary quick-view-btn" style="margin-top:12px;padding:8px 18px;font-size:0.82rem;color:var(--primary);border-color:var(--primary-light);background:transparent;" data-program="mech">Quick View</button>
+        </div>
+      </a>
+      <a href="#allprograms" class="prog-card reveal reveal-delay-2 tilt-card" data-category="engineering">
+        <div class="tilt-card-inner">
+          <img src="assets/images/programs/welding-fabrication.jpg" alt="Welding &amp; Fabrication" class="prog-card-img" loading="lazy">
+          <h3>Welding &amp; Fabrication</h3>
+          <p>B.Eng &mdash; Arc welding, MIG, TIG, structural fabrication, and quality control.</p>
+          <button class="btn-secondary quick-view-btn" style="margin-top:12px;padding:8px 18px;font-size:0.82rem;color:var(--primary);border-color:var(--primary-light);background:transparent;" data-program="weld">Quick View</button>
+        </div>
+      </a>
+      <a href="#allprograms" class="prog-card reveal reveal-delay-3 tilt-card" data-category="engineering">
+        <div class="tilt-card-inner">
+          <img src="assets/images/programs/refrigeration-ac.jpg" alt="Refrigeration &amp; Air Conditioning" class="prog-card-img" loading="lazy">
+          <h3>Refrigeration &amp; Air Conditioning</h3>
+          <p>B.Eng &mdash; HVAC systems, cold chain management, and sustainable cooling.</p>
+          <button class="btn-secondary quick-view-btn" style="margin-top:12px;padding:8px 18px;font-size:0.82rem;color:var(--primary);border-color:var(--primary-light);background:transparent;" data-program="rac">Quick View</button>
+        </div>
+      </a>
+      <a href="#allprograms" class="prog-card reveal reveal-delay-1 tilt-card" data-category="engineering">
+        <div class="tilt-card-inner">
+          <img src="assets/images/programs/plant-engineering.jpg" alt="Plant Engineering" class="prog-card-img" loading="lazy">
+          <h3>Plant Engineering</h3>
+          <p>B.Eng &mdash; Industrial plant operations, maintenance, and process optimization.</p>
+          <button class="btn-secondary quick-view-btn" style="margin-top:12px;padding:8px 18px;font-size:0.82rem;color:var(--primary);border-color:var(--primary-light);background:transparent;" data-program="plant">Quick View</button>
+        </div>
+      </a>
+      <a href="#allprograms" class="prog-card reveal reveal-delay-2 tilt-card" data-category="engineering">
+        <div class="tilt-card-inner">
+          <img src="assets/images/programs/maintenance-engineering.jpg" alt="Maintenance Engineering" class="prog-card-img" loading="lazy">
+          <h3>Maintenance Engineering</h3>
+          <p>B.Eng &mdash; Predictive maintenance, reliability engineering, and asset management.</p>
+          <button class="btn-secondary quick-view-btn" style="margin-top:12px;padding:8px 18px;font-size:0.82rem;color:var(--primary);border-color:var(--primary-light);background:transparent;" data-program="maint">Quick View</button>
+        </div>
+      </a>
+      <a href="#allprograms" class="prog-card reveal reveal-delay-3 tilt-card" data-category="computing">
+        <div class="tilt-card-inner">
+          <img src="assets/images/programs/computer-hardware.jpg" alt="Computer Hardware Technology" class="prog-card-img" loading="lazy">
+          <h3>Computer Hardware Technology</h3>
+          <p>B.Sc &mdash; Embedded systems, microprocessors, and hardware diagnostics.</p>
+          <button class="btn-secondary quick-view-btn" style="margin-top:12px;padding:8px 18px;font-size:0.82rem;color:var(--primary);border-color:var(--primary-light);background:transparent;" data-program="hw">Quick View</button>
+        </div>
+      </a>
+      <a href="#allprograms" class="prog-card reveal reveal-delay-1 tilt-card" data-category="computing">
+        <div class="tilt-card-inner">
+          <img src="assets/images/programs/computer-network.jpg" alt="Computer Network Technology" class="prog-card-img" loading="lazy">
+          <h3>Computer Network Technology</h3>
+          <p>B.Sc &mdash; Network design, cybersecurity, routing, and cloud infrastructure.</p>
+          <button class="btn-secondary quick-view-btn" style="margin-top:12px;padding:8px 18px;font-size:0.82rem;color:var(--primary);border-color:var(--primary-light);background:transparent;" data-program="net">Quick View</button>
+        </div>
+      </a>
+      <a href="#allprograms" class="prog-card reveal reveal-delay-2 tilt-card" data-category="computing">
+        <div class="tilt-card-inner">
+          <img src="assets/images/programs/server-administration.jpg" alt="Server Administration" class="prog-card-img" loading="lazy">
+          <h3>Server Administration</h3>
+          <p>B.Sc &mdash; Windows/Linux servers, virtualization, and enterprise IT management.</p>
+          <button class="btn-secondary quick-view-btn" style="margin-top:12px;padding:8px 18px;font-size:0.82rem;color:var(--primary);border-color:var(--primary-light);background:transparent;" data-program="server">Quick View</button>
+        </div>
+      </a>
+      <a href="#allprograms" class="prog-card reveal reveal-delay-3 tilt-card" data-category="computing">
+        <div class="tilt-card-inner">
+          <img src="assets/images/programs/computer-science.jpg" alt="Computer Science" class="prog-card-img" loading="lazy">
+          <h3>Computer Science</h3>
+          <p>B.Sc &mdash; AI, machine learning, software development, and data science.</p>
+          <button class="btn-secondary quick-view-btn" style="margin-top:12px;padding:8px 18px;font-size:0.82rem;color:var(--primary);border-color:var(--primary-light);background:transparent;" data-program="cs">Quick View</button>
+        </div>
+      </a>
+      <a href="#allprograms" class="prog-card reveal reveal-delay-1 tilt-card" data-category="business">
+        <div class="tilt-card-inner">
+          <img src="assets/images/programs/business-administration.jpg" alt="Business Administration" class="prog-card-img" loading="lazy">
+          <h3>Business Administration</h3>
+          <p>BBA &mdash; Management, marketing, finance, and entrepreneurship.</p>
+          <button class="btn-secondary quick-view-btn" style="margin-top:12px;padding:8px 18px;font-size:0.82rem;color:var(--primary);border-color:var(--primary-light);background:transparent;" data-program="ba">Quick View</button>
+        </div>
+      </a>
+      <a href="#allprograms" class="prog-card reveal reveal-delay-2 tilt-card" data-category="business">
+        <div class="tilt-card-inner">
+          <img src="assets/images/programs/ba-english.jpg" alt="BA English" class="prog-card-img" loading="lazy">
+          <h3>BA English</h3>
+          <p>BA &mdash; Literature, creative writing, linguistics, and communication studies.</p>
+          <button class="btn-secondary quick-view-btn" style="margin-top:12px;padding:8px 18px;font-size:0.82rem;color:var(--primary);border-color:var(--primary-light);background:transparent;" data-program="eng">Quick View</button>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-section" itemscope itemtype="https://schema.org/EducationalOrganization">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item reveal" itemprop="numberOfEmployees">
+        <div class="stat-num"><span class="counter" data-target="22">0</span>+</div>
+        <div class="stat-desc">Years of Excellence</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-1">
+        <div class="stat-num"><span class="counter" data-target="12">0</span>+</div>
+        <div class="stat-desc">Degree Programmes</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-2">
+        <div class="stat-num"><span class="counter" data-target="2400">0</span>+</div>
+        <div class="stat-desc">Alumni</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-3">
+        <div class="stat-num"><span class="counter" data-target="50">0</span>+</div>
+        <div class="stat-desc">Industry Partners</div>
+      </div>
+    </div>
+  </div>
+  <div class="shape-divider">
+    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="var(--primary)" opacity="0.06"></path>
+    </svg>
+  </div>
+</div>
+
+<!-- BUSINESS ADMINISTRATION -->
+<section id="program">
+  <div class="container">
+    <span class="section-label">Program</span>
+    <h2 class="reveal">Business Administration</h2>
+    <p class="section-sub reveal reveal-delay-1">Build core business acumen then deepen your expertise in HR, Marketing, Accounting, or Finance.</p>
+    <div class="curr-grid">
+      <div class="curr-block reveal reveal-delay-1">
+        <h3><span class="h3-icon">&#128218;</span> Core Business Modules</h3>
+        <ul>
+          <li>Principles of Management</li>
+          <li>Financial Accounting</li>
+          <li>Business Economics</li>
+          <li>Marketing Principles</li>
+          <li>Organisational Behaviour</li>
+          <li>Business Law &amp; Ethics</li>
+          <li>Quantitative Methods</li>
+          <li>Strategic Management</li>
+        </ul>
+      </div>
+      <div class="curr-block reveal reveal-delay-2">
+        <h3><span class="h3-icon">&#127919;</span> Career-Ready Outcomes</h3>
+        <ul>
+          <li>Strategic decision-making &amp; critical thinking</li>
+          <li>Data-driven communication skills</li>
+          <li>Leadership &amp; cross-functional teamwork</li>
+          <li>Digital fluency for modern business</li>
+          <li>Industry-aligned capstone project</li>
+          <li>Professional certification pathways</li>
+          <li>Internship &amp; placement support</li>
+          <li>Global business perspective</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPECIALIZATIONS -->
+<section id="specializations" style="background:var(--white);">
+  <div class="container">
+    <span class="section-label">Specializations</span>
+    <h2 class="reveal">Choose Your Path</h2>
+    <p class="section-sub reveal reveal-delay-1">Deepen your expertise in one of four high-demand fields.</p>
+    <div class="specs-grid">
+      <div class="spec-card reveal reveal-delay-1">
+        <div class="spec-icon" style="background:#ede9fe;color:#7c3aed;">HR</div>
+        <h3>Human Resources</h3>
+        <p>Strategic HRM, talent analytics, employment law, compensation &amp; performance management.</p>
+        <ul><li>Strategic HRM &amp; Planning</li><li>Recruitment &amp; Talent Analytics</li><li>Employment Law &amp; Relations</li><li>Compensation &amp; Performance</li></ul>
+      </div>
+      <div class="spec-card reveal reveal-delay-2">
+        <div class="spec-icon" style="background:#dbeafe;color:#2563eb;">MKT</div>
+        <h3>Marketing</h3>
+        <p>Digital marketing, consumer behaviour, brand strategy, and data-driven campaigns.</p>
+        <ul><li>Digital &amp; Social Media Marketing</li><li>Consumer Behaviour &amp; Insights</li><li>Brand Strategy &amp; Management</li><li>Marketing Analytics &amp; Research</li></ul>
+      </div>
+      <div class="spec-card reveal reveal-delay-3">
+        <div class="spec-icon" style="background:#fef3c7;color:#d97706;">ACT</div>
+        <h3>Accounting</h3>
+        <p>Financial reporting, auditing, taxation, and management accounting systems.</p>
+        <ul><li>Financial Reporting &amp; Standards</li><li>Auditing &amp; Assurance</li><li>Taxation Principles</li><li>Management Accounting</li></ul>
+      </div>
+      <div class="spec-card reveal reveal-delay-4">
+        <div class="spec-icon" style="background:#d1fae5;color:#059669;">FIN</div>
+        <h3>Finance</h3>
+        <p>Corporate finance, investment analysis, risk management, and financial markets.</p>
+        <ul><li>Corporate Finance &amp; Valuation</li><li>Investment &amp; Portfolio Analysis</li><li>Risk Management &amp; Insurance</li><li>Financial Markets &amp; Institutions</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BA ENGLISH -->
+<section id="english" style="background:var(--bg);">
+  <div class="container">
+    <span class="section-label">BA English Programme</span>
+    <h2 class="reveal">Bachelor of Arts in <span class="accent">English</span></h2>
+    <p class="section-sub reveal reveal-delay-1">A comprehensive 4-year degree combining English language, linguistics, and literary studies.</p>
+    <div class="curr-grid">
+      <div class="curr-block reveal reveal-delay-1">
+        <h3><span class="h3-icon">&#9312;</span> Year 1 &mdash; Level 100</h3>
+        <ul>
+          <li>Introduction to English Language I &amp; II</li>
+          <li>Introduction to Literature I &amp; II</li>
+          <li>Introduction to African Literature I &amp; II</li>
+          <li>Academic Writing &amp; Communication Skills</li>
+          <li>Introduction to Oral Literature</li>
+          <li>Critical Thinking &amp; Logic</li>
+          <li>Elective: Ghanaian Language / French</li>
+        </ul>
+      </div>
+      <div class="curr-block reveal reveal-delay-2">
+        <h3><span class="h3-icon">&#9313;</span> Year 2 &mdash; Level 200</h3>
+        <ul>
+          <li>English Phonetics &amp; Phonology</li>
+          <li>English Morphology &amp; Syntax</li>
+          <li>Introduction to Poetry</li>
+          <li>Introduction to Drama</li>
+          <li>The Novel: Form &amp; Analysis</li>
+          <li>Survey of African Literature</li>
+          <li>Introduction to Literary Criticism</li>
+        </ul>
+      </div>
+      <div class="curr-block reveal reveal-delay-3">
+        <h3><span class="h3-icon">&#9314;</span> Year 3 &mdash; Level 300</h3>
+        <ul>
+          <li>Semantics &amp; Pragmatics</li>
+          <li>Sociolinguistics</li>
+          <li>History of the English Language</li>
+          <li>Literary Theory &amp; Criticism</li>
+          <li>African Poetry &amp; Drama</li>
+          <li>The African Novel</li>
+          <li>Shakespeare Studies</li>
+          <li>Research Methods in English</li>
+        </ul>
+      </div>
+      <div class="curr-block reveal reveal-delay-4">
+        <h3><span class="h3-icon">&#9315;</span> Year 4 &mdash; Level 400</h3>
+        <ul>
+          <li>Stylistics &amp; Discourse Analysis</li>
+          <li>Advanced English Syntax / Grammar</li>
+          <li>Applied Linguistics</li>
+          <li>Contemporary Literary Theory</li>
+          <li>World Englishes &amp; Varieties of English</li>
+          <li>Special Author Study</li>
+          <li>Long Essay / Project Work</li>
+          <li>Comparative Literature</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COURSE COMPARISON -->
+<section id="compare" style="background:var(--bg);">
+  <div class="container">
+    <span class="section-label">Compare</span>
+    <h2 class="reveal word-reveal">Find Your <span class="accent">Perfect Programme</span></h2>
+    <p class="section-sub reveal reveal-delay-1">Select 2&ndash;3 programmes to compare side by side.</p>
+    <div class="compare-toggle reveal reveal-delay-1">
+      <button class="compare-toggle-btn" data-compare="mech">Mechanical Engineering</button>
+      <button class="compare-toggle-btn" data-compare="cs">Computer Science</button>
+      <button class="compare-toggle-btn" data-compare="ba">Business Admin</button>
+      <button class="compare-toggle-btn" data-compare="weld">Welding &amp; Fabrication</button>
+      <button class="compare-toggle-btn" data-compare="net">Network Technology</button>
+      <button class="compare-toggle-btn" data-compare="eng">BA English</button>
+    </div>
+    <div class="compare-table open" id="compareTable">
+      <table>
+        <thead><tr><th>Feature</th><th id="cTitle1">Programme A</th><th id="cTitle2">Programme B</th><th id="cTitle3">Programme C</th></tr></thead>
+        <tbody>
+          <tr><td>Degree Awarded</td><td class="cVal1">B.Eng Mechanical Engineering Technology</td><td class="cVal2">B.Sc Computer Science</td><td class="cVal3">BBA Business Administration</td></tr>
+          <tr><td>Duration</td><td class="cVal1">4 Years (8 Semesters)</td><td class="cVal2">4 Years (8 Semesters)</td><td class="cVal3">4 Years (8 Semesters)</td></tr>
+          <tr><td>Key Focus Areas</td><td class="cVal1">Design, Manufacturing, Thermodynamics, Energy</td><td class="cVal2">AI, ML, Software Dev, Data Science</td><td class="cVal3">Management, Marketing, Finance, Entrep.</td></tr>
+          <tr><td>Career Paths</td><td class="cVal1">Mechanical Engineer, Plant Manager, Energy Consultant</td><td class="cVal2">Software Engineer, Data Scientist, AI Specialist</td><td class="cVal3">Manager, Entrepreneur, Marketing Director</td></tr>
+          <tr><td>Math Intensity</td><td class="cVal1">High &mdash; 4 semesters</td><td class="cVal2">High &mdash; 4 semesters</td><td class="cVal3">Moderate &mdash; 2 semesters</td></tr>
+          <tr><td>Lab/Workshop Hours</td><td class="cVal1">Extensive (12+ hrs/week)</td><td class="cVal2">Moderate (6&ndash;8 hrs/week)</td><td class="cVal3">Minimal (2&ndash;4 hrs/week)</td></tr>
+          <tr><td>Industrial Attachment</td><td class="cVal1">12 weeks (Year 3)</td><td class="cVal2">12 weeks (Year 3)</td><td class="cVal3">12 weeks (Year 3)</td></tr>
+          <tr><td>Tuition (Annual)</td><td class="cVal1">GH&#8373; 8,500</td><td class="cVal2">GH&#8373; 7,500</td><td class="cVal3">GH&#8373; 6,500</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- MASONRY CAMPUS GALLERY -->
+<section style="background:var(--bg);">
+  <div class="container">
+    <span class="section-label">Gallery</span>
+    <h2 class="reveal word-reveal">Campus <span class="accent">Life</span></h2>
+    <p class="section-sub reveal reveal-delay-1">A glimpse into the vibrant STSC University experience.</p>
+    <div class="masonry reveal reveal-delay-1">
+      <div class="masonry-item" onclick="openLightbox('assets/images/gallery-1.jpg')"><img src="assets/images/gallery-1.jpg" alt="Campus" loading="lazy"><div class="masonry-overlay">Main Campus Building</div></div>
+      <div class="masonry-item" onclick="openLightbox('assets/images/gallery-2.jpg')"><img src="assets/images/gallery-2.jpg" alt="Library" loading="lazy"><div class="masonry-overlay">University Library</div></div>
+      <div class="masonry-item" onclick="openLightbox('assets/images/gallery-3.jpg')"><img src="assets/images/gallery-3.jpg" alt="Engineering Lab" loading="lazy"><div class="masonry-overlay">Engineering Workshop</div></div>
+      <div class="masonry-item" onclick="openLightbox('assets/images/gallery-4.jpg')"><img src="assets/images/gallery-4.jpg" alt="Graduation" loading="lazy"><div class="masonry-overlay">Graduation Ceremony</div></div>
+      <div class="masonry-item" onclick="openLightbox('assets/images/gallery-5.jpg')"><img src="assets/images/gallery-5.jpg" alt="Computer Lab" loading="lazy"><div class="masonry-overlay">Computer Science Lab</div></div>
+      <div class="masonry-item" onclick="openLightbox('assets/images/gallery-6.jpg')"><img src="assets/images/gallery-6.jpg" alt="Students" loading="lazy"><div class="masonry-overlay">Students in Discussion</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ALL PROGRAMS ACCORDION -->
+<section id="allprograms" style="background:var(--white);">
+  <div class="container">
+    <span class="section-label">Programmes</span>
+    <h2 class="reveal">Full <span class="accent">4-Year Curricula</span></h2>
+    <p class="section-sub reveal reveal-delay-1">Click each programme to view the complete 4-year course structure based on Ghanaian educational standards.</p>
+    <div class="faq-list prog-accordion reveal reveal-delay-2">
+
+      <!-- 1 -->
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>&#9881; Mechanical Engineering Technology <span class="prog-badge">B.Eng</span></span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <div class="prog-year-grid">
+              <div class="prog-year-block">
+                <h3>&#9312; Year 1 &mdash; Level 100</h3>
+                <ul><li>Engineering Mathematics I &amp; II</li><li>Engineering Physics I &amp; II</li><li>Engineering Chemistry</li><li>Technical Drawing &amp; CAD</li><li>Introduction to Mechanical Engineering</li><li>Communication Skills</li><li>Critical Thinking &amp; Logic</li><li>Workshop Practice &amp; Safety</li></ul>
+              </div>
+              <div class="prog-year-block">
+                <h3>&#9313; Year 2 &mdash; Level 200</h3>
+                <ul><li>Engineering Mathematics III &amp; IV</li><li>Engineering Mechanics</li><li>Thermodynamics I</li><li>Fluid Mechanics I</li><li>Strength of Materials</li><li>Materials Science</li><li>Manufacturing Processes</li><li>Electrical Engineering Fundamentals</li></ul>
+              </div>
+              <div class="prog-year-block">
+                <h3>&#9314; Year 3 &mdash; Level 300</h3>
+                <ul><li>Thermodynamics II</li><li>Fluid Mechanics II</li><li>Machine Design I &amp; II</li><li>Heat &amp; Mass Transfer</li><li>CAD/CAM &amp; Automation</li><li>Mechanical Vibrations</li><li>Instrumentation &amp; Control</li><li>Industrial Attachment (12 wks)</li></ul>
+              </div>
+              <div class="prog-year-block">
+                <h3>&#9315; Year 4 &mdash; Level 400</h3>
+                <ul><li>Project Work / Thesis</li><li>Advanced Machine Design</li><li>Energy Systems Engineering</li><li>Production &amp; Operations Mgmt.</li><li>Engineering Economics</li><li>Maintenance Engineering</li><li>Renewable Energy Technology</li><li>Entrepreneurship</li></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>&#9881; Welding and Fabrication <span class="prog-badge">B.Eng</span></span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <div class="prog-year-grid">
+              <div class="prog-year-block">
+                <h3>&#9312; Year 1</h3>
+                <ul><li>Engineering Mathematics I &amp; II</li><li>Engineering Physics I &amp; II</li><li>Engineering Chemistry</li><li>Technical Drawing &amp; CAD</li><li>Introduction to Welding &amp; Fabrication</li><li>Workshop Technology &amp; Safety</li><li>Communication Skills</li><li>Critical Thinking</li></ul>
+              </div>
+              <div class="prog-year-block">
+                <h3>&#9313; Year 2</h3>
+                <ul><li>Engineering Mathematics III</li><li>Metallurgy for Welders</li><li>Welding Processes I</li><li>Fabrication Techniques I</li><li>Strength of Materials</li><li>Engineering Materials</li><li>Health, Safety &amp; Environment</li><li>Blueprint Reading</li></ul>
+              </div>
+              <div class="prog-year-block">
+                <h3>&#9314; Year 3</h3>
+                <ul><li>Welding Processes II</li><li>Fabrication Techniques II</li><li>Welding Metallurgy</li><li>NDT &amp; Quality Control</li><li>Welding Design &amp; Drawing</li><li>Automation in Welding</li><li>Industrial Attachment</li><li>Welding Codes &amp; Standards</li></ul>
+              </div>
+              <div class="prog-year-block">
+                <h3>&#9315; Year 4</h3>
+                <ul><li>Project Work / Thesis</li><li>Advanced Welding Technology</li><li>Pipeline &amp; Structural Welding</li><li>Fabrication Project Mgmt.</li><li>Welding Inspection</li><li>Entrepreneurship</li><li>Industrial Safety Mgmt.</li><li>Elective: Underwater Welding</li></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>&#9881; Refrigeration &amp; Air-conditioning <span class="prog-badge">B.Eng</span></span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <div class="prog-year-grid">
+              <div class="prog-year-block">
+                <h3>&#9312; Year 1</h3>
+                <ul><li>Engineering Mathematics I &amp; II</li><li>Engineering Physics I &amp; II</li><li>Engineering Chemistry</li><li>Technical Drawing &amp; CAD</li><li>Intro. to Refrigeration &amp; AC</li><li>Workshop Practice &amp; Safety</li><li>Communication Skills</li><li>Critical Thinking</li></ul>
+              </div>
+              <div class="prog-year-block">
+                <h3>&#9313; Year 2</h3>
+                <ul><li>Engineering Mathematics III</li><li>Thermodynamics</li><li>Fluid Mechanics</li><li>Refrigeration Principles</li><li>Air Conditioning Principles</li><li>Electrical Circuits &amp; Machines</li><li>Engineering Materials</li><li>Basic Electronics</li></ul>
+              </div>
+              <div class="prog-year-block">
+                <h3>&#9314; Year 3</h3>
+                <ul><li>Advanced Refrigeration Systems</li><li>HVAC System Design</li><li>Refrigeration Components</li><li>Controls &amp; Instrumentation</li><li>Building Services</li><li>Energy Management</li><li>Industrial Attachment</li><li>Refrigerants &amp; Environment</li></ul>
+              </div>
+              <div class="prog-year-block">
+                <h3>&#9315; Year 4</h3>
+                <ul><li>Project Work / Thesis</li><li>HVAC Load Calc. &amp; Duct Design</li><li>Cold Chain Technology</li><li>Refrigeration &amp; AC Maint.</li><li>Indoor Air Quality</li><li>Entrepreneurship</li><li>Automotive AC</li><li>Solar Cooling Technology</li></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>&#9881; Plant Engineering <span class="prog-badge">B.Eng</span></span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <div class="prog-year-grid">
+              <div class="prog-year-block">
+                <h3>&#9312; Year 1</h3>
+                <ul><li>Engineering Mathematics I &amp; II</li><li>Engineering Physics I &amp; II</li><li>Engineering Chemistry</li><li>Technical Drawing &amp; CAD</li><li>Intro. to Plant Engineering</li><li>Workshop Practice</li><li>Communication Skills</li><li>Critical Thinking</li></ul>
+              </div>
+              <div class="prog-year-block">
+                <h3>&#9313; Year 2</h3>
+                <ul><li>Engineering Mathematics III</li><li>Engineering Mechanics</li><li>Thermodynamics</li><li>Fluid Mechanics</li><li>Plant Equipment</li><li>Electrical Power Systems</li><li>Materials Science</li><li>Instrumentation</li></ul>
+              </div>
+              <div class="prog-year-block">
+                <h3>&#9314; Year 3</h3>
+                <ul><li>Plant Design &amp; Layout</li><li>Plant Operations Mgmt.</li><li>Utilities &amp; Energy Systems</li><li>Process Control</li><li>Safety &amp; Risk Engineering</li><li>Corrosion Engineering</li><li>Industrial Attachment</li><li>Pumps, Pipes &amp; Valves</li></ul>
+              </div>
+              <div class="prog-year-block">
+                <h3>&#9315; Year 4</h3>
+                <ul><li>Project Work / Thesis</li><li>Plant Maintenance &amp; Reliability</li><li>Advanced Plant Operations</li><li>Process Engineering</li><li>Environmental Mgmt.</li><li>Project Management</li><li>Entrepreneurship</li><li>Power Plant Engineering</li></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>&#9881; Maintenance Engineering <span class="prog-badge">B.Eng</span></span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <div class="prog-year-grid">
+              <div class="prog-year-block">
+                <h3>&#9312; Year 1</h3>
+                <ul><li>Engineering Mathematics I &amp; II</li><li>Engineering Physics I &amp; II</li><li>Engineering Chemistry</li><li>Technical Drawing</li><li>Intro. to Maintenance Eng.</li><li>Workshop Practice</li><li>Communication Skills</li><li>Critical Thinking</li></ul>
+              </div>
+              <div class="prog-year-block">
+                <h3>&#9313; Year 2</h3>
+                <ul><li>Engineering Mathematics III</li><li>Engineering Mechanics</li><li>Materials Science</li><li>Electrical &amp; Electronics</li><li>Mechanical Systems</li><li>Maintenance Planning</li><li>Lubrication &amp; Tribology</li><li>Hydraulics &amp; Pneumatics</li></ul>
+              </div>
+              <div class="prog-year-block">
+                <h3>&#9314; Year 3</h3>
+                <ul><li>Condition Monitoring</li><li>Reliability Engineering</li><li>Maintenance Mgmt. Systems</li><li>Welding for Maintenance</li><li>CMMS</li><li>Non-Destructive Testing</li><li>Industrial Attachment</li><li>Shutdown &amp; Turnaround</li></ul>
+              </div>
+              <div class="prog-year-block">
+                <h3>&#9315; Year 4</h3>
+                <ul><li>Project Work / Thesis</li><li>Asset Management (ISO 55000)</li><li>Advanced Maintenance Strat.</li><li>Safety &amp; Risk Mgmt.</li><li>Maintenance Auditing</li><li>Entrepreneurship</li><li>Vibration Analysis</li><li>AI &amp; Predictive Maint.</li></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6 -->
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>&#128421; Computer Hardware <span class="prog-badge">B.Sc</span></span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <div class="prog-year-grid">
+              <div class="prog-year-block">
+                <h3>&#9312; Year 1</h3>
+                <ul><li>Mathematics for Computing I &amp; II</li><li>Introduction to Computer Systems</li><li>Digital Logic &amp; Design</li><li>Electronics I &amp; II</li><li>Programming Fundamentals</li><li>Communication Skills</li><li>Critical Thinking</li><li>Computer Hardware Fundamentals</li></ul>
+              </div>
+              <div class="prog-year-block">
+                <h3>&#9313; Year 2</h3>
+                <ul><li>Computer Architecture</li><li>Microprocessors &amp; Microcontrollers</li><li>Operating Systems</li><li>Digital Electronics</li><li>Hardware Repair &amp; Maint.</li><li>Networking Fundamentals</li><li>Technical Writing</li><li>Discrete Mathematics</li></ul>
+              </div>
+              <div class="prog-year-block">
+                <h3>&#9314; Year 3</h3>
+                <ul><li>Embedded Systems Design</li><li>Advanced Computer Architecture</li><li>Hardware Troubleshooting</li><li>PCB Design &amp; Fabrication</li><li>Server &amp; Storage Hardware</li><li>System Administration</li><li>Industrial Attachment</li><li>Data Recovery &amp; Forensics</li></ul>
+              </div>
+              <div class="prog-year-block">
+                <h3>&#9315; Year 4</h3>
+                <ul><li>Project Work / Thesis</li><li>Hardware Security</li><li>Advanced Embedded Systems</li><li>ASIC &amp; FPGA Design</li><li>IT Service &amp; Asset Mgmt.</li><li>Entrepreneurship</li><li>Mobile Device Repair</li><li>Cloud &amp; Data Centre HW</li></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7 -->
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>&#127760; Computer Network <span class="prog-badge">B.Sc</span></span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <div class="prog-year-grid">
+              <div class="prog-year-block">
+                <h3>&#9312; Year 1</h3>
+                <ul><li>Mathematics for Computing I &amp; II</li><li>Introduction to Computer Systems</li><li>Programming Fundamentals</li><li>Digital Logic</li><li>Network Fundamentals</li><li>Communication Skills</li><li>Critical Thinking</li><li>Computer Applications</li></ul>
+              </div>
+              <div class="prog-year-block">
+                <h3>&#9313; Year 2</h3>
+                <ul><li>Data Communications</li><li>Switching &amp; Routing</li><li>Operating Systems</li><li>Network Cabling</li><li>IP Addressing &amp; Subnetting</li><li>Network Security Fundamentals</li><li>Technical Writing</li><li>Database Fundamentals</li></ul>
+              </div>
+              <div class="prog-year-block">
+                <h3>&#9314; Year 3</h3>
+                <ul><li>Advanced Routing &amp; Switching</li><li>Wireless &amp; Mobile Networks</li><li>Network Security &amp; Firewalls</li><li>Network Design</li><li>WAN Technologies &amp; VPNs</li><li>Network Management</li><li>Industrial Attachment</li><li>Data Centre Networking</li></ul>
+              </div>
+              <div class="prog-year-block">
+                <h3>&#9315; Year 4</h3>
+                <ul><li>Project Work / Thesis</li><li>Network Automation &amp; SDN</li><li>Cloud Networking</li><li>Cybersecurity Operations</li><li>VOIP &amp; UC</li><li>Entrepreneurship</li><li>IT Governance</li><li>Network Design Capstone</li></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8 -->
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>&#128421; Server Administration <span class="prog-badge">B.Sc</span></span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <div class="prog-year-grid">
+              <div class="prog-year-block">
+                <h3>&#9312; Year 1</h3>
+                <ul><li>Mathematics for Computing I &amp; II</li><li>Computer Systems Intro.</li><li>Operating Systems Fundamentals</li><li>Programming (Python)</li><li>Network Fundamentals</li><li>Communication Skills</li><li>Critical Thinking</li><li>Computer Hardware Basics</li></ul>
+              </div>
+              <div class="prog-year-block">
+                <h3>&#9313; Year 2</h3>
+                <ul><li>Windows Server Administration</li><li>Linux Administration</li><li>Directory Services (AD)</li><li>Networking Essentials</li><li>Scripting &amp; Automation</li><li>Database Administration</li><li>Technical Writing</li><li>IT Security Fundamentals</li></ul>
+              </div>
+              <div class="prog-year-block">
+                <h3>&#9314; Year 3</h3>
+                <ul><li>Advanced Server Admin</li><li>Virtualization</li><li>Cloud Computing</li><li>Storage Management</li><li>Backup &amp; Disaster Recovery</li><li>Enterprise Networking</li><li>Industrial Attachment</li><li>Containerisation</li></ul>
+              </div>
+              <div class="prog-year-block">
+                <h3>&#9315; Year 4</h3>
+                <ul><li>Project Work / Thesis</li><li>Enterprise Server Mgmt.</li><li>DevOps &amp; CI/CD</li><li>Cloud Architecture</li><li>IT Service Mgmt. (ITIL)</li><li>Entrepreneurship</li><li>Cybersecurity</li><li>Infrastructure as Code</li></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9 -->
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>&#128187; Computer Science <span class="prog-badge">B.Sc</span></span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <div class="prog-year-grid">
+              <div class="prog-year-block">
+                <h3>&#9312; Year 1</h3>
+                <ul><li>Mathematics for Computing I &amp; II</li><li>Programming I &amp; II (C++, Python)</li><li>Introduction to CS</li><li>Digital Logic</li><li>Web Technology</li><li>Communication Skills</li><li>Critical Thinking</li><li>Computer Hardware</li></ul>
+              </div>
+              <div class="prog-year-block">
+                <h3>&#9313; Year 2</h3>
+                <ul><li>Data Structures &amp; Algorithms</li><li>OOP (Java)</li><li>Database Systems</li><li>Computer Architecture</li><li>Operating Systems</li><li>Discrete Mathematics</li><li>Software Engineering</li><li>Linear Algebra &amp; Calculus</li></ul>
+              </div>
+              <div class="prog-year-block">
+                <h3>&#9314; Year 3</h3>
+                <ul><li>Data Comms &amp; Networks</li><li>Design &amp; Analysis of Algorithms</li><li>Artificial Intelligence</li><li>Compiler Construction</li><li>Theory of Computation</li><li>HCI</li><li>Industrial Attachment</li><li>Probability &amp; Statistics</li></ul>
+              </div>
+              <div class="prog-year-block">
+                <h3>&#9315; Year 4</h3>
+                <ul><li>Project Work / Thesis</li><li>Machine Learning</li><li>Distributed Systems</li><li>Professional Ethics</li><li>Software Project Mgmt.</li><li>Entrepreneurship</li><li>Cybersecurity</li><li>Elective: Data Science / IoT</li></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO TESTIMONIALS -->
+<section itemscope itemtype="https://schema.org/VideoGallery">
+  <div class="container">
+    <span class="section-label">Testimonials</span>
+    <h2 class="reveal">What Our <span class="accent">Students Say</span></h2>
+    <p class="section-sub reveal reveal-delay-1">Watch real stories from STSC University graduates. Hear directly from our alumni about how our programmes transformed their careers.</p>
+    <div class="video-grid reveal reveal-delay-1">
+      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ','_blank')" itemscope itemtype="https://schema.org/VideoObject">
+        <meta itemprop="name" content="From Classroom to Career - Kwame M. STSC University">
+        <meta itemprop="description" content="Kwame M., Mechanical Engineering graduate, shares how STSC University prepared him for a career in engineering.">
+        <meta itemprop="thumbnailUrl" content="assets/images/video-thumb-1.jpg">
+        <div class="video-thumb"><img src="assets/images/video-thumb-1.jpg" alt="Kwame M. Mechanical Engineering graduate testimonial video" loading="lazy"><div class="video-play-btn"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="#fff" stroke-width="1.5"/><polygon points="10,7 17,12 10,17" fill="#fff"/></svg></div></div>
+        <div class="video-info"><h4>From Classroom to Career</h4><p>Kwame M. &mdash; Mechanical Engineering '24</p></div>
+      </div>
+      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ','_blank')" itemscope itemtype="https://schema.org/VideoObject">
+        <meta itemprop="name" content="Why I Chose STSC - Ama A. STSC University">
+        <meta itemprop="description" content="Ama A., Computer Science graduate, explains why she chose STSC University for her tech education.">
+        <meta itemprop="thumbnailUrl" content="assets/images/video-thumb-2.jpg">
+        <div class="video-thumb"><img src="assets/images/video-thumb-2.jpg" alt="Ama A. Computer Science graduate testimonial video" loading="lazy"><div class="video-play-btn"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="#fff" stroke-width="1.5"/><polygon points="10,7 17,12 10,17" fill="#fff"/></svg></div></div>
+        <div class="video-info"><h4>Why I Chose STSC</h4><p>Ama A. &mdash; Computer Science '23</p></div>
+      </div>
+      <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ','_blank')" itemscope itemtype="https://schema.org/VideoObject">
+        <meta itemprop="name" content="Education That Works - Esi O. STSC University">
+        <meta itemprop="description" content="Esi O., BA English graduate, discusses how STSC University's humanities programme built her communication skills.">
+        <meta itemprop="thumbnailUrl" content="assets/images/video-thumb-3.jpg">
+        <div class="video-thumb"><img src="assets/images/video-thumb-3.jpg" alt="Esi O. BA English graduate testimonial video" loading="lazy"><div class="video-play-btn"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="#fff" stroke-width="1.5"/><polygon points="10,7 17,12 10,17" fill="#fff"/></svg></div></div>
+        <div class="video-info"><h4>Education That Works</h4><p>Esi O. &mdash; BA English '22</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ALUMNI STORIES -->
+<section id="alumni" style="background:var(--white);">
+  <div class="container">
+    <span class="section-label">Alumni</span>
+    <h2 class="reveal">Success <span class="accent">Stories</span></h2>
+    <p class="section-sub reveal reveal-delay-1">Our graduates are making an impact across industries in Ghana and beyond.</p>
+    <div class="alumni-grid reveal reveal-delay-1" itemscope itemtype="https://schema.org/ItemList">
+      <div class="alumni-card" itemprop="itemListElement" itemscope itemtype="https://schema.org/Review">
+        <meta itemprop="itemReviewed" content="STSC University Mechanical Engineering Programme">
+        <div itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="Michael Asare"></div>
+        <img src="assets/images/alumni-1.jpg" alt="Michael Asare - STSC University alumnus, Plant Engineer" class="alumni-photo" loading="lazy">
+        <h4 itemprop="name">Michael Asare</h4>
+        <div class="alumni-title" itemprop="jobTitle">Plant Engineer, Tema Oil Refinery</div>
+        <p class="alumni-quote" itemprop="reviewBody">"STSC gave me the hands-on engineering skills I use every day. I was job-ready from day one."</p>
+      </div>
+      <div class="alumni-card" itemprop="itemListElement" itemscope itemtype="https://schema.org/Review">
+        <meta itemprop="itemReviewed" content="STSC University Computer Network Programme">
+        <div itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="Grace Mensah"></div>
+        <img src="assets/images/alumni-2.jpg" alt="Grace Mensah - STSC University alumna, IT Manager" class="alumni-photo" loading="lazy">
+        <h4 itemprop="name">Grace Mensah</h4>
+        <div class="alumni-title" itemprop="jobTitle">IT Manager, Access Bank Ghana</div>
+        <p class="alumni-quote" itemprop="reviewBody">"The computer network programme prepared me for real-world enterprise IT challenges."</p>
+      </div>
+      <div class="alumni-card" itemprop="itemListElement" itemscope itemtype="https://schema.org/Review">
+        <meta itemprop="itemReviewed" content="STSC University Welding & Fabrication Programme">
+        <div itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="Emmanuel Tetteh"></div>
+        <img src="assets/images/alumni-3.jpg" alt="Emmanuel Tetteh - STSC University alumnus, Founder" class="alumni-photo" loading="lazy">
+        <h4 itemprop="name">Emmanuel Tetteh</h4>
+        <div class="alumni-title" itemprop="jobTitle">Founder, Tetteh Engineering Works</div>
+        <p class="alumni-quote" itemprop="reviewBody">"I started my own fabrication company right after graduation. STSC instilled the entrepreneurial mindset."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" style="background:var(--white);">
+  <div class="container">
+    <span class="section-label">FAQ</span>
+    <h2 class="reveal">Frequently Asked <span class="accent">Questions</span></h2>
+    <p class="section-sub reveal reveal-delay-1">Everything you need to know about studying at STSC University.</p>
+    <div class="faq-list reveal reveal-delay-1">
+      <div class="faq-item">
+        <button class="faq-question">How do I apply to STSC University? <span class="faq-icon">+</span></button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Complete the online application form on this page or visit our admissions page. Submit your WASSCE/SSSCE results, personal details, and programme preference. Our admissions team will respond within 48 hours.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">What are the entry requirements? <span class="faq-icon">+</span></button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">WASSCE: Credit (A1&ndash;C6) in English, Mathematics, and three relevant subjects. SSSCE: Credit (A&ndash;D) in similar subjects. Mature entry (25+ years) and diploma holders may also qualify.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">How long are the programmes? <span class="faq-icon">+</span></button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">All our bachelor's degree programmes are 4 years (8 semesters) full-time, following the Ghanaian university standard. Some programmes offer part-time options spanning 5&ndash;6 years.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Are scholarships available? <span class="faq-icon">+</span></button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Yes. We offer merit-based scholarships and need-based financial aid. Early applicants receive priority consideration. Contact our admissions team for a personalised breakdown.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Is STSC University accredited? <span class="faq-icon">+</span></button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Yes. STSC University is fully accredited by the Ghana Tertiary Education Commission (GTEC). All our programmes meet national academic standards.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA + APPLICATION -->
+<section id="apply" style="background:linear-gradient(135deg,var(--primary-dark),var(--primary),var(--primary-dark));color:var(--white);padding:80px 0;">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;">
+      <div class="reveal reveal-delay-1">
+        <img src="assets/images/admissions-hero.jpg" alt="STSC University graduates celebrating" class="admissions-hero-img" loading="lazy">
+        <span class="section-label light">Apply Now</span>
+        <h2 style="font-size:2.5rem;margin-bottom:14px;">Your Future <span class="accent">Starts Here</span></h2>
+        <p style="font-size:1.1rem;opacity:0.8;margin-bottom:28px;line-height:1.7;">Join 2,400+ graduates who transformed their careers with STSC. Fill in your details and receive a full programme prospectus plus a call from your personal advisor within 24 hours.</p>
+        <ul style="list-style:none;margin-bottom:28px;">
+          <li style="padding:7px 0;display:flex;align-items:center;gap:12px;font-size:0.95rem;opacity:0.85;">&#10003; Fast-track application review &mdash; decision in 48 hours</li>
+          <li style="padding:7px 0;display:flex;align-items:center;gap:12px;font-size:0.95rem;opacity:0.85;">&#10003; Dedicated admissions advisor assigned to you</li>
+          <li style="padding:7px 0;display:flex;align-items:center;gap:12px;font-size:0.95rem;opacity:0.85;">&#10003; Up to 40% scholarship &amp; financial aid options</li>
+          <li style="padding:7px 0;display:flex;align-items:center;gap:12px;font-size:0.95rem;opacity:0.85;">&#10003; Online, on-campus, or hybrid delivery</li>
+        </ul>
+      </div>
+      <div class="conv-form reveal reveal-delay-2" style="color:var(--text);">
+        <div class="conv-form-header">
+          <h3>Get Your Free Prospectus</h3>
+          <span class="badge">Free</span>
+        </div>
+        <p class="form-sub">No obligation. Your data is secure.</p>
+        <div id="toast" class="toast"></div>
+        <form id="applyForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName">First Name *</label>
+              <input type="text" id="firstName" required autocomplete="given-name" placeholder="John" />
+              <div class="form-error-msg">Please enter your first name</div>
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name *</label>
+              <input type="text" id="lastName" required autocomplete="family-name" placeholder="Doe" />
+              <div class="form-error-msg">Please enter your last name</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" required autocomplete="email" placeholder="john@example.com" />
+            <div class="form-error-msg">Please enter a valid email address</div>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" autocomplete="tel" placeholder="+233 55 000 0000" />
+          </div>
+          <div class="form-group">
+            <label for="specialization">Preferred Programme *</label>
+            <select id="specialization" required>
+              <option value="">Select your programme</option>
+              <option value="mech">Mechanical Engineering Technology</option>
+              <option value="weld">Welding and Fabrication</option>
+              <option value="rac">Refrigeration &amp; Air-conditioning</option>
+              <option value="plant">Plant Engineering</option>
+              <option value="maint">Maintenance Engineering</option>
+              <option value="hw">Computer Hardware</option>
+              <option value="net">Computer Network</option>
+              <option value="srv">Server Administration</option>
+              <option value="cs">Computer Science</option>
+              <option value="ba">Business Administration</option>
+              <option value="eng">BA English</option>
+              <option value="undecided">Not sure yet &mdash; help me decide</option>
+            </select>
+            <div class="form-error-msg">Please select a programme</div>
+          </div>
+          <button type="submit" class="btn-submit" id="submitBtn">
+            <span class="btn-text">Send My Free Prospectus &darr;</span>
+            <span class="btn-loading"><span class="spinner"></span> Sending...</span>
+          </button>
+          <div class="form-guarantee">
+            <span>&#128274; SSL secured &mdash; 100% free, no obligation</span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- VIRTUAL CAMPUS TOUR -->
+<section style="background:var(--bg);padding:60px 0;">
+  <div class="container">
+    <span class="section-label">Explore</span>
+    <h2>Virtual <span class="accent">Campus Tour</span></h2>
+    <p class="section-sub">Drag to explore our campus. Get a feel for life at STSC University.</p>
+    <div class="panorama-container" id="panorama">
+      <div class="panorama-track" id="panoramaTrack">
+        <div class="panorama-slide"><div class="pslide-bg" style="background-image:linear-gradient(135deg,#1e3a5f,#2a5a8a);"><div class="pslide-label">&#127970; Main Campus Entrance</div></div></div>
+        <div class="panorama-slide"><div class="pslide-bg" style="background-image:linear-gradient(135deg,#2a5a8a,#3a7abf);"><div class="pslide-label">&#127891; Academic Block</div></div></div>
+        <div class="panorama-slide"><div class="pslide-bg" style="background-image:linear-gradient(135deg,#3a7abf,#4a8adf);"><div class="pslide-label">&#128218; Library &amp; Study Centre</div></div></div>
+        <div class="panorama-slide"><div class="pslide-bg" style="background-image:linear-gradient(135deg,#4a8adf,#5a9aef);"><div class="pslide-label">&#127944; Sports Complex</div></div></div>
+      </div>
+    </div>
+    <div class="panorama-dots" id="panoramaDots">
+      <button class="active" data-index="0"></button>
+      <button data-index="1"></button>
+      <button data-index="2"></button>
+      <button data-index="3"></button>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL FEED -->
+<section style="background:var(--white);padding:60px 0;">
+  <div class="container">
+    <span class="section-label">Community</span>
+    <h2>From Our <span class="accent">Social Feed</span></h2>
+    <p class="section-sub">Join the conversation. Follow STSC University on social media.</p>
+    <div class="social-feed">
+      <div class="social-post reveal">
+        <div class="sp-header"><div class="sp-avatar">ST</div><div><div class="sp-name">STSC University</div><div class="sp-platform">&#120143; Twitter/X</div></div></div>
+        <div class="sp-text">We are proud to announce our new international directorate in India! Welcome to the STSC family. &#127470;&#127475; <a href="#" style="color:var(--accent);">#STSCGlobal</a></div>
+        <div style="font-size:0.75rem;color:#999;">&#128260; 2 days ago</div>
+      </div>
+      <div class="social-post reveal reveal-delay-1">
+        <div class="sp-header"><div class="sp-avatar">ST</div><div><div class="sp-name">STSC University</div><div class="sp-platform">&#120157; Facebook</div></div></div>
+        <div class="sp-text">Applications for 2026/2027 are now open! Visit our website to apply. Your future starts here. &#127891;</div>
+        <div style="font-size:0.75rem;color:#999;">&#128260; 5 days ago</div>
+      </div>
+      <div class="social-post reveal reveal-delay-2">
+        <div class="sp-header"><div class="sp-avatar">ST</div><div><div class="sp-name">STSC University</div><div class="sp-platform">&#128247; Instagram</div></div></div>
+        <div class="sp-text">Golden hour at the STSC campus. There is no place like home. &#127963;&#65039; <a href="#" style="color:var(--accent);">#STSCampus</a> <a href="#" style="color:var(--accent);">#StudyInGhana</a></div>
+        <div style="font-size:0.75rem;color:#999;">&#128260; 1 week ago</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-about">
+        <a href="index.html" class="logo" style="margin-bottom:12px;">
+          <div class="logo-img" style="background:var(--accent);color:var(--primary-dark);">ST</div>
+          <div class="logo-text" style="color:var(--white);"><span style="color:var(--accent);">STSC</span> University<small style="color:rgba(255,255,255,0.4);">School of Technology &amp; Social Sciences</small></div>
+        </a>
+        <p>STSC University is a premier private tertiary institution at Kasoa-Nyanyano, offering accredited 4-year bachelor's degree programmes in Engineering, Technology, Business, and the Humanities.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook">FB</a>
+          <a href="#" aria-label="Twitter/X">X</a>
+          <a href="#" aria-label="Instagram">IG</a>
+          <a href="#" aria-label="YouTube">YT</a>
+          <a href="#" aria-label="LinkedIn">in</a>
+        </div>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="index.html#programs">Our Programmes</a></li>
+          <li><a href="admissions.html">Admissions</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="#">Student Portal</a></li>
+          <li><a href="#">Alumni</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Programmes</h4>
+        <ul>
+          <li><a href="index.html#allprograms">Engineering &amp; Technology</a></li>
+          <li><a href="index.html#allprograms">Computing &amp; IT</a></li>
+          <li><a href="index.html#program">Business Administration</a></li>
+          <li><a href="index.html#english">BA English</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul class="footer-contact">
+          <li><span>&#128205;</span> Kasoa-Nyanyano, Central Region, Ghana</li>
+          <li><span>&#9742;</span> +233 257 077 972</li>
+          <li><span>&#9993;</span> info@successtheological.edu</li>
+          <li><span>&#128338;</span> Mon&ndash;Fri: 8:00 AM &ndash; 5:00 PM</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span id="currentYear">2026</span> STSC University. All rights reserved.</span>
+      <span>Built with &#9829; in Ghana</span>
+    </div>
+  </div>
+</footer>
+
+<button id="backToTop" aria-label="Back to top">&uarr;</button>
+
+<div class="popup-overlay" id="admissionsPopup" role="dialog" aria-modal="true" aria-label="Admissions notice">
+  <div class="popup-modal" role="document">
+    <button class="popup-close" id="popupClose" aria-label="Close dialog">&times;</button>
+    <div class="popup-banner">
+      <div class="popup-icon">&#127891;</div>
+      <h2>Admissions Open!</h2>
+      <p>Apply now for the</p>
+      <div class="popup-year">2026 / 2027 Academic Year</div>
+    </div>
+    <div class="popup-body">
+      <p>STSC University is now accepting applications for the <strong>2026/2027 academic year</strong>. Choose from 11 accredited 4-year degree programmes in Engineering, Computing, Business, and the Humanities.</p>
+      <p><strong>Early bird deadline:</strong> 31 August 2026 &mdash; Get 10% off first-year tuition.</p>
+      <a href="admissions.html" class="popup-cta">Apply Now &rarr;</a>
+      <button class="popup-dismiss" id="popupDismiss">&#10005; Remind me later</button>
+    </div>
+  </div>
+</div>
+
+<a href="https://wa.me/233257077972?text=Hello%20STSC%20University%2C%20I%20would%20like%20to%20inquire%20about%20your%20programmes." class="whatsapp-float whatsapp-pulse" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.57 24l6.305-1.654a11.882 11.882 0 005.176 1.174h.004c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+  <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" alt="" class="lightbox-img" id="lightboxImg">
+</div>
+
+<div class="modal-overlay" id="quickViewModal">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose">&times;</button>
+    <img src="" alt="" class="modal-img" id="modalImg">
+    <h3 id="modalTitle"></h3>
+    <div class="modal-meta" id="modalMeta"></div>
+    <div id="modalDesc"></div>
+    <a href="" class="btn-primary modal-cta" id="modalCta">View Full Details &rarr;</a>
+  </div>
+</div>
+
+<div class="sticky-mobile-btn">
+  <a href="admissions.html" class="btn-primary shimmer">Apply Now for 2026/2027 &rarr;</a>
+</div>
+
+<!-- FLOATING SEARCH -->
+<button class="search-float-btn" id="searchFloatBtn" aria-label="Search programmes">&#128269;</button>
+<div class="search-overlay" id="searchOverlay">
+  <div class="search-box">
+    <input type="text" class="search-input" id="searchInput" placeholder="Search programmes, courses, keywords..." autocomplete="off">
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<div class="custom-cursor"><div class="cursor-ring" id="cursorRing"></div></div>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

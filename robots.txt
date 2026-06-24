@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /assets/
+
+Sitemap: https://www.stscuniversity.edu.gh/sitemap.xml
+
+# Crawl rules for optimal performance
+Crawl-delay: 5
