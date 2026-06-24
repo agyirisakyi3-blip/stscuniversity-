@@ -563,11 +563,21 @@ window.openLightbox = function(src) {
   input.onkeydown = (e) => { if (e.key === 'Enter') sendMsg(); };
 })();
 
-// ===== MULTI-LANGUAGE (EN/TWI) =====
+// ===== MULTI-LANGUAGE (EN/TWI) WITH GEO DETECTION =====
 (function() {
   const btn = document.getElementById('langToggle');
   if (!btn) return;
-  let currentLang = localStorage.getItem('lang') || 'en';
+
+  function detectGeoLang() {
+    const lang = navigator.language || navigator.userLanguage || '';
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+    const isGhana = /^en-gh$/i.test(lang) || tz === 'Africa/Accra';
+    const isTwiPref = /^tw$/i.test(lang) || lang.startsWith('ak-');
+    return (isGhana || isTwiPref) ? 'tw' : 'en';
+  }
+
+  let stored = localStorage.getItem('lang');
+  let currentLang = stored || detectGeoLang();
   let dict = {};
 
   function applyLang(lang) {
@@ -582,18 +592,19 @@ window.openLightbox = function(src) {
     });
   }
 
-  fetch('assets/lang/' + currentLang + '.json')
-    .then(r => r.json())
-    .then(d => { dict = d; applyLang(currentLang); })
-    .catch(() => {});
+  function loadLang(lang) {
+    return fetch('assets/lang/' + lang + '.json')
+      .then(r => r.json())
+      .then(d => { dict = d; applyLang(lang); })
+      .catch(() => {});
+  }
+
+  loadLang(currentLang);
 
   btn.addEventListener('click', () => {
     currentLang = currentLang === 'en' ? 'tw' : 'en';
     localStorage.setItem('lang', currentLang);
-    fetch('assets/lang/' + currentLang + '.json')
-      .then(r => r.json())
-      .then(d => { dict = d; applyLang(currentLang); })
-      .catch(() => {});
+    loadLang(currentLang);
   });
 })();
 
