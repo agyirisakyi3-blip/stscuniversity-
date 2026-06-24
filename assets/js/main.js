@@ -7,29 +7,53 @@ if (scrollBar) {
   });
 }
 
-// Nav shrink on scroll
+// Nav shrink + hide on scroll direction
 const navbar = document.getElementById('navbar');
 if (navbar) {
+  let lastScroll = 0;
   window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 40);
+    const y = window.scrollY;
+    navbar.classList.toggle('scrolled', y > 40);
+    if (y > 120) {
+      navbar.classList.toggle('nav-hidden', y > lastScroll && y > 200);
+    } else {
+      navbar.classList.remove('nav-hidden');
+    }
+    lastScroll = y;
   });
 }
 
 // Hamburger toggle
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('navLinks');
+const navOverlay = document.getElementById('navOverlay');
+function closeNav() {
+  navLinks.classList.remove('open');
+  hamburger.classList.remove('active');
+  if (navOverlay) navOverlay.classList.remove('open');
+  hamburger.setAttribute('aria-expanded', 'false');
+  document.querySelectorAll('.dropdown-menu.open').forEach(m => m.classList.remove('open'));
+  document.body.style.overflow = '';
+}
+function openNav() {
+  navLinks.classList.add('open');
+  hamburger.classList.add('active');
+  if (navOverlay) navOverlay.classList.add('open');
+  hamburger.setAttribute('aria-expanded', 'true');
+  document.body.style.overflow = 'hidden';
+}
 if (hamburger && navLinks) {
   hamburger.addEventListener('click', () => {
-    const isOpen = navLinks.classList.toggle('open');
-    hamburger.classList.toggle('active');
-    hamburger.setAttribute('aria-expanded', isOpen);
+    if (navLinks.classList.contains('open')) {
+      closeNav();
+    } else {
+      openNav();
+    }
   });
+  if (navOverlay) navOverlay.addEventListener('click', closeNav);
   document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
-      navLinks.classList.remove('open');
-      hamburger.classList.remove('active');
-      hamburger.setAttribute('aria-expanded', 'false');
-      document.querySelectorAll('.dropdown-menu.open').forEach(m => m.classList.remove('open'));
+      if (window.innerWidth <= 768) closeNav();
     });
   });
 }
