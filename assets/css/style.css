@@ -1036,4 +1036,15 @@ footer ul a:hover { color: var(--accent); }
   #chatbotBtn { bottom: 152px; right: 16px; width: 48px; height: 48px; }
   #chatbotPanel { right: 10px; width: calc(100vw - 20px); max-width: 340px; bottom: 208px; }
   #cookieBanner { flex-direction: column; text-align: center; padding: 14px 16px; }
+  /* Mobile image fixes */
+  .founder-img, .founder-wrap .founder-img { height: 260px; }
+  .founder-wrap .founder-img, .founder-wrap:hover .founder-img { transform: none; }
+  .prog-card-img { height: 160px; }
+  .admissions-hero-img { height: 180px; }
+  .modal-img { height: 180px; }
+  .hero-slide { background-position: 30% center; }
+  .masonry-item img { min-height: 120px; object-fit: cover; }
+  .founder-wrap > div[style*="position:absolute;bottom:20px;left:20px"] { padding: 10px 16px !important; max-width: calc(100% - 16px) !important; }
+  .founder-wrap > div[style*="position:absolute;bottom:20px;left:20px"] > div[style*="font-size:2.8rem"] { font-size: 2rem !important; }
+  .founder-wrap > div[style*="position:absolute;bottom:20px;left:20px"] > div[style*="font-size:0.85rem"] { font-size: 0.75rem !important; }
 }
